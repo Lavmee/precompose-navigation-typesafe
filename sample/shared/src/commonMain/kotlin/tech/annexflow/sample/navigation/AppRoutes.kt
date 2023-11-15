@@ -8,7 +8,7 @@ internal sealed interface AppRoutes : Route {
     data object Home : AppRoutes
 
     @Serializable
-    data class Scene(val id: Int) : AppRoutes
+    data class Scene(val id: Int?) : AppRoutes
 
     @Serializable
     data class Dialog(val text: String) : AppRoutes
@@ -17,9 +17,9 @@ internal sealed interface AppRoutes : Route {
     data class Floating(val isCenter: Boolean = true) : AppRoutes
 
     @Serializable
-    sealed class Group(val id: Int) : Route {
+    sealed class Group(val id: Int?) : Route {
         @Serializable
-        data object First : Group(1)
+        data object First : Group(null)
 
         @Serializable
         data object Second : Group(2)

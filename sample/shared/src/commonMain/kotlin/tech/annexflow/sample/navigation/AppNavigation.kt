@@ -59,6 +59,11 @@ fun AppNavigation() {
                     Text("Go to scene #123")
                 }
                 Button(onClick = {
+                    navigator.navigate(route = AppRoutes.Scene(id = null))
+                }) {
+                    Text("Go to scene null")
+                }
+                Button(onClick = {
                     navigator.navigate(route = AppRoutes.Dialog("Dialog text"))
                 }) {
                     Text("Go to dialog")
