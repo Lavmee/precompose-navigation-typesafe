@@ -26,7 +26,7 @@ internal fun <T : Route> T.encodeToString(
 
 internal fun <T : Route> BackStackEntry.decodePath(
     deserializer: KSerializer<T>,
-): T = PathDecoder(pathMap = pathMap).decodeSerializableValue(deserializer = deserializer)
+): T = BackStackEntryDecoder(backStackEntry = this).decodeSerializableValue(deserializer = deserializer)
 
 internal fun lazyJson(serializationModule: SerializersModule): Lazy<Json> = lazy {
     Json { serializersModule = serializationModule }

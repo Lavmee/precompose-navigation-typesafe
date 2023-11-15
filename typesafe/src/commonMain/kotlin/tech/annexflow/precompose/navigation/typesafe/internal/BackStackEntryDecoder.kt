@@ -7,17 +7,24 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.AbstractDecoder
 import kotlinx.serialization.encoding.CompositeDecoder
 import kotlinx.serialization.modules.SerializersModule
+import moe.tlaster.precompose.navigation.BackStackEntry
+import tech.annexflow.precompose.navigation.typesafe.isOptional
 
 @OptIn(ExperimentalSerializationApi::class)
-internal class PathDecoder(
-    private val pathMap: Map<String, String>,
+internal class BackStackEntryDecoder(
+    backStackEntry: BackStackEntry,
 ) : AbstractDecoder() {
     override val serializersModule: SerializersModule by lazy { routeSerializersModule }
     private val json by lazyJson(serializersModule)
+
+    private val pathMap = backStackEntry.pathMap
+    private val queryString = backStackEntry.queryString
+
     private var isMain = true
     private var elementsCount = 0
     private var elementIndex = 0
     private var elementName = ""
+    private var isElementOptional = false
 
     override fun <T> decodeSerializableValue(deserializer: DeserializationStrategy<T>): T {
         return if (isMain || (deserializer.descriptor.kind is PrimitiveKind)) {
@@ -28,30 +35,30 @@ internal class PathDecoder(
     }
 
     override fun decodeElementIndex(descriptor: SerialDescriptor): Int {
-        while (elementIndex < elementsCount) {
-            elementName = descriptor.getElementName(elementIndex)
-            elementIndex++
-            if (pathMap.containsKey(elementName)) {
-                return elementIndex - 1
-            }
-        }
-        return CompositeDecoder.DECODE_DONE
+        if (elementIndex == descriptor.elementsCount) return CompositeDecoder.DECODE_DONE
+        elementName = descriptor.getElementName(elementIndex)
+        isElementOptional = descriptor.isOptional(elementIndex)
+        return elementIndex++
     }
 
     override fun decodeNotNullMark(): Boolean =
-        pathMap[elementName] != null && pathMap[elementName] != "null"
+        pathMap[elementName] != null || queryString?.map?.get(elementName) != null
 
-    override fun decodeNull(): Nothing? = null
-    override fun decodeInt(): Int = pathMap[elementName]!!.toInt()
-    override fun decodeLong(): Long = pathMap[elementName]!!.toLong()
-    override fun decodeFloat(): Float = pathMap[elementName]!!.toFloat()
-    override fun decodeBoolean(): Boolean = pathMap[elementName]!!.toBooleanStrict()
-    override fun decodeString(): String = pathMap[elementName]!!
-    override fun decodeDouble(): Double = pathMap[elementName]!!.toDouble()
-    override fun decodeByte(): Byte = pathMap[elementName]!!.toByte()
-    override fun decodeShort(): Short = pathMap[elementName]!!.toShort()
-    override fun decodeChar(): Char = pathMap[elementName]!!.first()
+    override fun decodeInt(): Int = decodeValue().toInt()
+    override fun decodeBoolean(): Boolean = decodeValue().toBooleanStrict()
+    override fun decodeByte(): Byte = decodeValue().toByte()
+    override fun decodeShort(): Short = decodeValue().toShort()
+    override fun decodeLong(): Long = decodeValue().toLong()
+    override fun decodeFloat(): Float = decodeValue().toFloat()
+    override fun decodeDouble(): Double = decodeValue().toDouble()
+    override fun decodeChar(): Char = decodeValue().first()
+    override fun decodeString(): String = decodeValue()
     override fun decodeEnum(enumDescriptor: SerialDescriptor): Int = decodeInt()
+
+    override fun decodeValue(): String =
+        if (isElementOptional) queryString!!.map[elementName]!!.first()
+        else pathMap[elementName]
+            ?: throw IllegalStateException("Element $elementName is not optional and not provided!")
 
     override fun beginStructure(descriptor: SerialDescriptor): CompositeDecoder {
         elementsCount = descriptor.elementsCount

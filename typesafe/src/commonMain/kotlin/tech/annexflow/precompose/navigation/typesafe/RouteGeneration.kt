@@ -18,13 +18,11 @@ fun <T : Route> generateRoutePattern(serializer: KSerializer<T>): String {
     if (descriptor.noNeedToParseElements) {
         return route
     }
-
     val path = StringBuilder()
     (0 until descriptor.elementsCount).forEach { index ->
         val name = descriptor.getElementName(index = index)
-        path.append("/{$name}")
-        if (descriptor.isNavTypeOptional(index = index)) {
-            path.append("?")
+        if (!descriptor.isOptional(index = index)) {
+            path.append("/{$name}")
         }
     }
     return route + path.toString()
@@ -35,7 +33,7 @@ internal val SerialDescriptor.noNeedToParseElements: Boolean get() =
     elementsCount == 0 || kind == PolymorphicKind.SEALED
 
 @OptIn(ExperimentalSerializationApi::class)
-internal fun SerialDescriptor.isNavTypeOptional(index: Int): Boolean =
+internal fun SerialDescriptor.isOptional(index: Int): Boolean =
     isElementOptional(index) || getElementDescriptor(index).isNullable
 
 inline fun <reified T : Route> T.generateRoutePattern(): String =
