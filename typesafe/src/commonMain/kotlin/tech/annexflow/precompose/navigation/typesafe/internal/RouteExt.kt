@@ -40,4 +40,10 @@ internal fun <T : Route> registerRouteType(
 
 @OptIn(ExperimentalSerializationApi::class)
 internal fun createRouteBase(serializationStrategy: SerializationStrategy<*>): String =
-    serializationStrategy.descriptor.serialName.substringAfterLast('.').lowercase()
+    serializationStrategy.descriptor.serialName.substringAfterLast('.').camelCaseToSnakeCase()
+
+internal fun String.camelCaseToSnakeCase(): String {
+    return this.replace(patternRegex, "_$0").lowercase()
+}
+
+private val patternRegex = "(?<=.)[A-Z]".toRegex()
