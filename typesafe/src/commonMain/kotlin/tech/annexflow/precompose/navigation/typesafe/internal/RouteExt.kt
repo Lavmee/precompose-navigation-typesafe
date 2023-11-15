@@ -26,7 +26,9 @@ internal fun <T : Route> T.encodeToString(
 
 internal fun <T : Route> BackStackEntry.decodePath(
     deserializer: KSerializer<T>,
-): T = BackStackEntryDecoder(backStackEntry = this).decodeSerializableValue(deserializer = deserializer)
+): T = BackStackEntryDecoder(pathMap = pathMap, queryString = queryString).decodeSerializableValue(
+    deserializer = deserializer
+)
 
 internal fun lazyJson(serializationModule: SerializersModule): Lazy<Json> = lazy {
     Json { serializersModule = serializationModule }
@@ -39,4 +41,10 @@ internal fun <T : Route> registerRouteType(
 
 @OptIn(ExperimentalSerializationApi::class)
 internal fun createRouteBase(serializationStrategy: SerializationStrategy<*>): String =
-    serializationStrategy.descriptor.serialName.substringAfterLast('.').lowercase()
+    serializationStrategy.descriptor.serialName.substringAfterLast('.').camelCaseToSnakeCase()
+
+internal fun String.camelCaseToSnakeCase(): String {
+    return this.replace(patternRegex, "_$0").lowercase()
+}
+
+private val patternRegex = "(?<=.)[A-Z]".toRegex()
