@@ -26,7 +26,7 @@ sealed interface AppRoutes : Route {
 @Composable
 fun AppNavigation() {
     val navigator = rememberNavigator()
-    TypeSafeNavHost(
+    TypesafeNavHost(
         initialRoute = AppRoutes.Home,
         navigator = navigator,
         modifier = Modifier.fillMaxSize()
