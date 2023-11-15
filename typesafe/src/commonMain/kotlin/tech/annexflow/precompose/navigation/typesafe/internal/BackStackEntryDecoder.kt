@@ -7,18 +7,16 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.AbstractDecoder
 import kotlinx.serialization.encoding.CompositeDecoder
 import kotlinx.serialization.modules.SerializersModule
-import moe.tlaster.precompose.navigation.BackStackEntry
+import moe.tlaster.precompose.navigation.QueryString
 import tech.annexflow.precompose.navigation.typesafe.isOptional
 
 @OptIn(ExperimentalSerializationApi::class)
 internal class BackStackEntryDecoder(
-    backStackEntry: BackStackEntry,
+    private val pathMap: Map<String, String>,
+    private val queryString: QueryString?
 ) : AbstractDecoder() {
     override val serializersModule: SerializersModule by lazy { routeSerializersModule }
     private val json by lazyJson(serializersModule)
-
-    private val pathMap = backStackEntry.pathMap
-    private val queryString = backStackEntry.queryString
 
     private var isMain = true
     private var elementsCount = 0
