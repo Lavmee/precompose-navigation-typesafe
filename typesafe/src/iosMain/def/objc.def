@@ -1,0 +1,12 @@
+language = Objective-C
+package = tech.annexflow.precompose.navigation.typesafe.objc
+---
+
+#import <Foundation/Foundation.h>
+
+@protocol KeyValueObserver
+- (void)observeValueForKeyPath:(NSString *)keyPath
+    ofObject:(id)object
+    change:(NSDictionary<NSKeyValueChangeKey, id> *)change
+    context:(void *)context;
+@end

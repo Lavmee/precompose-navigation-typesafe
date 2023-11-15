@@ -1,0 +1,13 @@
+# Project exclude paths
+/.gradle/
+/build/
+/sample/shared/build/
+/sample/shared/build/classes/kotlin/desktop/main/
+/sample/shared/build/classes/kotlin/iosSimulatorArm64/main/klib/
+/sample/shared/build/classes/kotlin/iosX64/main/klib/
+/sample/shared/build/classes/kotlin/macosArm64/main/klib/
+/typesafe/build/
+/typesafe/build/classes/kotlin/desktop/main/
+/typesafe/build/classes/kotlin/iosSimulatorArm64/main/klib/
+/typesafe/build/classes/kotlin/iosX64/main/klib/
+/typesafe/build/classes/kotlin/macosArm64/main/klib/
