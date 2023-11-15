@@ -24,9 +24,9 @@ sealed interface AppRoutes : Route {
 
 ```kotlin
 @Composable
-fun TypeSafeNavHost() {
+fun AppNavigation() {
     val navigator = rememberNavigator()
-    NavHost(
+    TypeSafeNavHost(
         initialRoute = AppRoutes.Home,
         navigator = navigator,
         modifier = Modifier.fillMaxSize()
