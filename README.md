@@ -1,3 +1,6 @@
+[![Maven Central](https://img.shields.io/maven-central/v/tech.annexflow.precompose/precompose-navigation-typesafe)](https://search.maven.org/search?q=g:tech.annexflow.precompose)
+![license](https://img.shields.io/github/license/Lavmee/precompose-navigation-typesafe)
+
 ![badge-Android](https://img.shields.io/badge/Platform-Android-brightgreen)
 ![badge-iOS](https://img.shields.io/badge/Platform-iOS-lightgray)
 ![badge-JVM](https://img.shields.io/badge/Platform-JVM-orange)
