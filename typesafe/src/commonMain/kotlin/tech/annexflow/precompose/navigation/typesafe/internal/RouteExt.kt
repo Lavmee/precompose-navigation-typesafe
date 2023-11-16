@@ -36,7 +36,7 @@ internal fun lazyJson(serializationModule: SerializersModule): Lazy<Json> = lazy
 internal fun <T : Route> registerRouteType(
     kClass: KClass<T>,
     serializer: KSerializer<T>,
-) = addRouteModuleBuilder { subclass(kClass, serializer) }
+) = addRouteSerializer(kClass, serializer)
 
 @OptIn(ExperimentalSerializationApi::class)
 internal fun createRouteBase(serializationStrategy: SerializationStrategy<*>): String =
