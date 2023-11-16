@@ -63,12 +63,16 @@ fun AppNavigation() {
 
 ## Download
 
-Not published yet
-
 ```kotlin
+plugins {
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.20"
+}
+
 val commonMain by getting {
     dependencies {
-        implementation("tech.annexflow.precompose:navigation-typesafe:")
+        implementation("moe.tlaster:precompose:1.5.7")
+        implementation("tech.annexflow.precompose:navigation-typesafe:0.1.0")
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.1")
     }
 }
 ```
