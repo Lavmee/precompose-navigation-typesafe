@@ -37,7 +37,7 @@ import tech.annexflow.precompose.navigation.typesafe.scene
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppNavigation() {
+internal fun AppNavigation() {
     val navigator = rememberNavigator()
     /**
      * or use custom TypesafeNavHost with
