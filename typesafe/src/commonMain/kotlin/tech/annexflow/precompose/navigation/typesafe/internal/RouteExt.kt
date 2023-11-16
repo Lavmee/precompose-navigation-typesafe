@@ -7,7 +7,6 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import moe.tlaster.precompose.navigation.BackStackEntry
 import tech.annexflow.precompose.navigation.typesafe.Route
-import kotlin.reflect.KClass
 
 @OptIn(ExperimentalSerializationApi::class)
 internal fun <T : Route> T.encodeToStringFromSerializersModule(): String {
