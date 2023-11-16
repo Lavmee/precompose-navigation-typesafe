@@ -17,4 +17,5 @@ dependencyResolutionManagement {
 }
 
 include(":sample:shared")
+include(":sample:desktopOnly")
 include(":typesafe")
