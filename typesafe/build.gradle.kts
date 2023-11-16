@@ -19,7 +19,7 @@ kotlin {
             }
         }
     }
-    jvm("desktop") {
+    jvm {
         compilations.all {
             kotlinOptions {
                 jvmTarget = rootProject.extra.get("jvmTarget") as String
