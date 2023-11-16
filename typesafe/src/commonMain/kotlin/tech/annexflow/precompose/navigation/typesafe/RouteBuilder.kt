@@ -8,7 +8,6 @@ import moe.tlaster.precompose.navigation.RouteBuilder
 import moe.tlaster.precompose.navigation.SwipeProperties
 import moe.tlaster.precompose.navigation.transition.NavTransition
 import tech.annexflow.precompose.navigation.typesafe.internal.decodePath
-import tech.annexflow.precompose.navigation.typesafe.internal.registerRouteType
 import kotlin.reflect.KClass
 
 /**
