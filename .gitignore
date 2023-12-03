@@ -12,3 +12,7 @@
 /typesafe/build/classes/kotlin/iosX64/main/klib/
 /typesafe/build/classes/kotlin/macosArm64/main/klib/
 /typesafe/.gradle/
+/sample/desktopOnly/build/
+/.idea/
+/.run/
+/local.properties
