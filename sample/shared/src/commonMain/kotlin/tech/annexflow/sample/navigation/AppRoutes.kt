@@ -17,7 +17,7 @@ internal sealed interface AppRoutes : Route {
     data class Floating(val isCenter: Boolean = true) : AppRoutes
 
     /**
-     * Sealed classes & interfaces are not fully supported now.
+     * Sealed classes & interfaces are not supported now.
      **/
     @Serializable
     open class Group(val id: Int? = 5) : AppRoutes {
