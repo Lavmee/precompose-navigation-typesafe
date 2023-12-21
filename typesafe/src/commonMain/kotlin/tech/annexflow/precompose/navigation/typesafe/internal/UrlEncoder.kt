@@ -45,7 +45,9 @@ internal object UrlEncoder {
                     bytesBuffer = null
                     bytesPos = 0
                 }
-                result.append(character)
+                if (started) {
+                    result.append(character)
+                }
                 index++
             }
         }
