@@ -74,7 +74,7 @@ plugins {
 val commonMain by getting {
     dependencies {
         implementation("moe.tlaster:precompose:1.5.10")
-        implementation("tech.annexflow.precompose:navigation-typesafe:0.2.3")
+        implementation("tech.annexflow.precompose:navigation-typesafe:0.2.4")
         implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.2")
     }
 }
