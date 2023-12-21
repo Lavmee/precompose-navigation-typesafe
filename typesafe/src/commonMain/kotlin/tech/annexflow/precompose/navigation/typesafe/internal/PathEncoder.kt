@@ -59,10 +59,11 @@ internal class PathEncoder(
     }
 
     private fun appendValue(value: String) {
+        val encodedString = UrlEncoder.encode(value)
         if (elementOptional) {
-            queryParams.append("&$elementName=$value")
+            queryParams.append("&$elementName=$encodedString")
         } else {
-            url.append("/$value")
+            url.append("/$encodedString")
         }
     }
 }

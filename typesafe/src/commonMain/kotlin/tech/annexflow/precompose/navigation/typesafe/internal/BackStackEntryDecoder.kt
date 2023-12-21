@@ -53,10 +53,12 @@ internal class BackStackEntryDecoder(
     override fun decodeString(): String = decodeValue()
     override fun decodeEnum(enumDescriptor: SerialDescriptor): Int = decodeInt()
 
-    override fun decodeValue(): String =
-        if (isElementOptional) queryString!!.map[elementName]!!.first()
+    override fun decodeValue(): String {
+        val decodedValue =  if (isElementOptional) queryString!!.map[elementName]!!.first()
         else pathMap[elementName]
             ?: throw IllegalStateException("Element $elementName is not optional and not provided!")
+        return UrlEncoder.decode(decodedValue)
+    }
 
     override fun beginStructure(descriptor: SerialDescriptor): CompositeDecoder {
         elementsCount = descriptor.elementsCount
