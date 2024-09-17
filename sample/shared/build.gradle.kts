@@ -15,7 +15,6 @@ kotlin {
     kotlin.applyDefaultHierarchyTemplate()
 
     androidTarget {
-        publishLibraryVariants("release")
         compilerOptions {
             jvmTarget.set(JvmTarget.fromTarget(rootProject.extra.get("jvmTarget") as String))
         }
@@ -86,7 +85,7 @@ kotlin {
             }
         }
 
-        val desktopMain by getting {
+        val jvmMain by getting {
             dependencies {
                 implementation(compose.desktop.common)
                 implementation(compose.desktop.currentOs)
