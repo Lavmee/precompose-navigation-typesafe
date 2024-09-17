@@ -41,16 +41,6 @@ kotlin {
         }
     }
 
-    configure(targets) {
-        if (this is KotlinNativeTarget && konanTarget.family.isAppleFamily) {
-            compilations.getByName("main") {
-                val objc by cinterops.creating {
-                    defFile(project.file("src/iosMain/def/objc.def"))
-                }
-            }
-        }
-    }
-
     sourceSets {
         val commonMain by getting {
             dependencies {
