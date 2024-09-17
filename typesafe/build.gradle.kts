@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.compose)
@@ -6,22 +9,20 @@ plugins {
     alias(libs.plugins.multiplatform)
 }
 
+@OptIn(ExperimentalKotlinGradlePluginApi::class)
 kotlin {
     kotlin.applyDefaultHierarchyTemplate()
 
     androidTarget {
         publishLibraryVariants("release")
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = rootProject.extra.get("jvmTarget") as String
-            }
+        compilerOptions {
+            jvmTarget.set(JvmTarget.fromTarget(rootProject.extra.get("jvmTarget") as String))
         }
     }
+
     jvm {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = rootProject.extra.get("jvmTarget") as String
-            }
+        compilerOptions {
+            jvmTarget.set(JvmTarget.fromTarget(rootProject.extra.get("jvmTarget") as String))
         }
     }
 
