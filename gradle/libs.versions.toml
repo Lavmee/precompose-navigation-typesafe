@@ -9,7 +9,7 @@ kotlin = "2.0.20"
 kotlinx-serialization = "1.7.2"
 maven-publish = "0.29.0"
 spotless = "6.23.3"
-precompose = "1.6.0"
+precompose = "1.6.2"
 
 [libraries]
 
