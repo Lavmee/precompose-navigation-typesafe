@@ -68,14 +68,14 @@ fun AppNavigation() {
 
 ```kotlin
 plugins {
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.21"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.20"
 }
 
 val commonMain by getting {
     dependencies {
-        implementation("moe.tlaster:precompose:1.5.10")
-        implementation("tech.annexflow.precompose:precompose-navigation-typesafe:0.2.4")
-        implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.2")
+        implementation("moe.tlaster:precompose:1.6.2")
+        implementation("tech.annexflow.precompose:precompose-navigation-typesafe:0.3.0")
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.7.2")
     }
 }
 ```
