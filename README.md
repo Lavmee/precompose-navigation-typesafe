@@ -5,6 +5,7 @@
 ![badge-iOS](https://img.shields.io/badge/Platform-iOS-lightgray)
 ![badge-JVM](https://img.shields.io/badge/Platform-JVM-orange)
 ![badge-macOS](https://img.shields.io/badge/Platform-macOS-purple)
+![badge-Web](https://img.shields.io/badge/Platform-Web-blue)
 
 ## PreCompose Navigation TypeSafe
 
