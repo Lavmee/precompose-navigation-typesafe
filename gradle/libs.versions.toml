@@ -1,15 +1,15 @@
 [versions]
 
-agp = "8.1.4"
+agp = "8.2.2"
 androidx-appcompat = "1.7.0"
-androidx-activityCompose = "1.9.2"
-compose = "1.6.11"
-compose-uitooling = "1.5.4"
+androidx-activityCompose = "1.9.3"
+compose = "1.7.1"
+compose-uitooling = "1.7.6"
 kotlin = "2.0.20"
 kotlinx-serialization = "1.7.2"
 maven-publish = "0.29.0"
 spotless = "6.23.3"
-precompose = "1.6.2"
+precompose = "1.7.0-alpha03"
 
 [libraries]
 
